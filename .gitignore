@@ -1,0 +1,16 @@
+
+[Bb]in/
+[Oo]bj/
+
+.vscode/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+.db/
+docker-compose.override.yml
+
+appsettings.Development.json
+appsettings.json

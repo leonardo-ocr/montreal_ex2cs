@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -61,14 +60,13 @@ namespace BlogPessoal.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Texto = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Data = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     ResumoIA = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     TagsIA = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CategoriaIA = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    TemaId = table.Column<long>(type: "bigint", nullable: true),
+                    TemaId = table.Column<long>(type: "bigint", nullable: false),
                     UsuarioId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
@@ -78,7 +76,8 @@ namespace BlogPessoal.Migrations
                         name: "FK_Postagens_Temas_TemaId",
                         column: x => x.TemaId,
                         principalTable: "Temas",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Postagens_Usuarios_UsuarioId",
                         column: x => x.UsuarioId,

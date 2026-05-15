@@ -25,6 +25,9 @@ C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\bin\Debug\net10.
 C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\bin\Debug\net10.0\Mono.TextTemplating.dll
 C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\bin\Debug\net10.0\MySqlConnector.dll
 C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\bin\Debug\net10.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\bin\Debug\net10.0\System.CodeDom.dll
 C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\bin\Debug\net10.0\System.Composition.AttributedModel.dll
 C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\bin\Debug\net10.0\System.Composition.Convention.dll
@@ -104,6 +107,7 @@ C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\obj\Debug\net10.
 C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\obj\Debug\net10.0\BlogPessoal.csproj.CoreCompileInputs.cache
 C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\obj\Debug\net10.0\BlogPessoal.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\obj\Debug\net10.0\BlogPessoal.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\obj\Debug\net10.0\BlogPessoal.sourcelink.json
 C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\obj\Debug\net10.0\rjimswa.dswa.cache.json
 C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
@@ -119,3 +123,7 @@ C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\obj\Debug\net10.
 C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\obj\Debug\net10.0\BlogPessoal.pdb
 C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\obj\Debug\net10.0\BlogPessoal.genruntimeconfig.cache
 C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\obj\Debug\net10.0\ref\BlogPessoal.dll
+C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\bin\Debug\net10.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\bin\Debug\net10.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\bin\Debug\net10.0\Newtonsoft.Json.dll
+C:\Users\Cleyton BMX\Desktop\exercicio 2 - montreal\BlogPessoal\bin\Debug\net10.0\Newtonsoft.Json.Bson.dll

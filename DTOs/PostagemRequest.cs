@@ -1,0 +1,1 @@
+public record PostagemRequest(string Titulo, string Texto, long TemaId);
