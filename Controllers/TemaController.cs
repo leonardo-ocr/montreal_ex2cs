@@ -1,11 +1,13 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BlogPessoal.Data; // ATENÇÃO: Se o seu AppDbContext estiver em outra pasta (ex: Context), mude aqui para BlogPessoal.Context
+using BlogPessoal.Data;
 using BlogPessoal.Models;
 using BlogPessoal.DTOs;
 
 namespace BlogPessoal.Controllers;
 
+[Authorize] // <-- O bloqueio de segurança que exige o Token JWT
 [Route("api/temas")]
 [ApiController]
 public class TemaController : ControllerBase

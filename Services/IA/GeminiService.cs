@@ -34,10 +34,8 @@ public class GeminiService : IIAService
 
         var response = await _httpClient.PostAsync(url, content);
         
-        // --- NOVA LÓGICA DE CAPTURA DE ERRO ---
         if (!response.IsSuccessStatusCode)
         {
-            // Isso vai ler a resposta da Google e jogar na tela do Swagger para vermos!
             var erroDoGoogle = await response.Content.ReadAsStringAsync();
             throw new Exception($"Google API recusou a requisição. Código: {response.StatusCode}. Detalhe: {erroDoGoogle}");
         }

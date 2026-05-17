@@ -1,4 +1,4 @@
-// Controllers/PostagemController.cs
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BlogPessoal.Data;
@@ -7,6 +7,7 @@ using BlogPessoal.Services.IA;
 
 namespace BlogPessoal.Controllers;
 
+[Authorize] // <-- O bloqueio de segurança que exige o Token JWT
 [Route("api/postagens")]
 [ApiController]
 public class PostagemController : ControllerBase
@@ -14,7 +15,6 @@ public class PostagemController : ControllerBase
     private readonly AppDbContext _context;
     private readonly IIAService _iaService;
 
-    // Injetamos o banco e o serviço de IA
     public PostagemController(AppDbContext context, IIAService iaService)
     {
         _context = context;
@@ -24,15 +24,12 @@ public class PostagemController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Postagem>> Create(PostagemRequest request)
     {
-        // 1. Verifica se o tema existe
         var temaExiste = await _context.Temas.FindAsync(request.TemaId);
         if (temaExiste == null)
             return NotFound("O Tema informado não existe.");
 
-        // 2. Chama o Gemini para analisar o texto
         var analiseIA = await _iaService.GerarResumoCuriosidadeAsync(request.Texto);
 
-        // 3. Monta o objeto Postagem unindo os dados do usuário com a resposta da IA
         var novaPostagem = new Postagem
         {
             Titulo = request.Titulo,
@@ -43,7 +40,6 @@ public class PostagemController : ControllerBase
             CategoriaIA = analiseIA.Categoria
         };
 
-        // 4. Salva no banco de dados MySQL
         _context.Postagens.Add(novaPostagem);
         await _context.SaveChangesAsync();
 
