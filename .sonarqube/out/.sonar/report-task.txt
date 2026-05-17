@@ -1,0 +1,6 @@
+projectKey=exMontreal
+serverUrl=http://localhost:9000
+serverVersion=26.5.0.122743
+dashboardUrl=http://localhost:9000/dashboard?id=exMontreal
+ceTaskId=9aa2a921-5bdd-46a7-92ed-992e7bc4237e
+ceTaskUrl=http://localhost:9000/api/ce/task?id=9aa2a921-5bdd-46a7-92ed-992e7bc4237e

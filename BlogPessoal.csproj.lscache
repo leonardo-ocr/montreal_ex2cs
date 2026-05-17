@@ -71,6 +71,8 @@ Migrations/
  20260515211421_InitialCreate.Designer.cs
  20260515211607_CriacaoInicialCompleta.cs
  20260515211607_CriacaoInicialCompleta.Designer.cs
+ 20260517191920_AdicionandoUsuarioNaPostagem.cs
+ 20260517191920_AdicionandoUsuarioNaPostagem.Designer.cs
  AppDbContextModelSnapshot.cs
 Models/
  Postagem.cs

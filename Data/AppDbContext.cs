@@ -8,5 +8,6 @@ namespace BlogPessoal.Data {
         public DbSet<Postagem> Postagens { get; set; } = null!;
         public DbSet<Tema> Temas { get; set; } = null!;
         public DbSet<Usuario> Usuarios { get; set; } = null!;
+        
     }
 }

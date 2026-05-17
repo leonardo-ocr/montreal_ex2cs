@@ -46,13 +46,46 @@ namespace BlogPessoal.Services
 
             usuarioLogin.Id = buscaUsuario.Id;
             usuarioLogin.Nome = buscaUsuario.Nome;
-            usuarioLogin.Foto = buscaUsuario.Foto;
+            usuarioLogin.Foto = buscaUsuario.Foto ?? string.Empty;
             usuarioLogin.Token = GerarToken(buscaUsuario);
             usuarioLogin.Senha = string.Empty;
 
             return usuarioLogin;
         }
+public async Task<Usuario?> AtualizarUsuario(Usuario usuario)
+        {
+            var usuarioExiste = await _context.Usuarios.AsNoTracking().FirstOrDefaultAsync(u => u.Id == usuario.Id);
+            if (usuarioExiste == null)
+                return null;
 
+            // Se o utilizador alterou a palavra-passe, gera um novo hash seguro
+            if (!string.IsNullOrEmpty(usuario.Senha) && usuario.Senha != usuarioExiste.Senha)
+            {
+                usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha, workFactor: 10);
+            }
+            else
+            {
+                // Se não enviou uma nova senha, mantém a que já estava no banco
+                usuario.Senha = usuarioExiste.Senha;
+            }
+
+            _context.Usuarios.Update(usuario);
+            await _context.SaveChangesAsync();
+
+            return usuario;
+        }
+
+        public async Task<bool> DeletarUsuario(long id)
+        {
+            var usuario = await _context.Usuarios.FindAsync(id);
+            if (usuario == null)
+                return false;
+
+            _context.Usuarios.Remove(usuario);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
         private string GerarToken(Usuario usuario)
         {
             var tokenHandler = new JwtSecurityTokenHandler();

@@ -10,13 +10,13 @@ namespace BlogPessoal.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-
+          //só para não ficar vazio
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-
+           //só para não ficar vazio
         }
     }
 }

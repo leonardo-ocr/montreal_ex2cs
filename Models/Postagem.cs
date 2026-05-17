@@ -1,6 +1,6 @@
-// Models/Postagem.cs
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace BlogPessoal.Models;
 
@@ -8,6 +8,7 @@ public class Postagem
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [JsonRequired]
     public long Id { get; set; }
 
     [Required]
@@ -18,12 +19,15 @@ public class Postagem
     [MaxLength(1000)]
     public string Texto { get; set; } = string.Empty;
 
-    // Campos gerados pela IA
     public string? ResumoIA { get; set; }
     public string? TagsIA { get; set; }
     public string? CategoriaIA { get; set; }
 
-    // Relacionamento com Tema
+    [JsonRequired]
     public long TemaId { get; set; }
     public virtual Tema? Tema { get; set; }
+    
+    [JsonRequired]
+    public long UsuarioId { get; set; }
+    public virtual Usuario? Usuario { get; set; }
 }

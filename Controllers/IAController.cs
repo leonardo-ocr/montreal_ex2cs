@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using BlogPessoal.Services.IA;
 
 namespace BlogPessoal.Controllers;
 
+[Authorize]
 [Route("api/ia")]
 [ApiController]
 public class IAController : ControllerBase
@@ -15,19 +17,14 @@ public class IAController : ControllerBase
     }
 
     [HttpPost("resumir")]
-    public async Task<ActionResult<ResultadoIA>> ResumirPostagem([FromBody] string conteudo)
+    public async Task<IActionResult> Resumir([FromBody] string texto)
     {
-        if (string.IsNullOrWhiteSpace(conteudo))
-            return BadRequest("O conteúdo não pode estar vazio.");
+        if (string.IsNullOrEmpty(texto))
+            return BadRequest("O texto para resumo não pode estar vazio.");
 
-        try
-        {
-            var resultado = await _iaService.GerarResumoCuriosidadeAsync(conteudo);
-            return Ok(resultado);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, $"Erro ao processar na IA: {ex.Message}");
-        }
+        // Consome o serviço do Gemini configurado anteriormente
+        var resultado = await _iaService.GerarResumoCuriosidadeAsync(texto);
+        
+        return Ok(resultado);
     }
 }

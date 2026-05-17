@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json;
+using BlogPessoal.DTOs;
 
 namespace BlogPessoal.Services.IA;
 
@@ -10,12 +11,19 @@ public class GeminiService : IIAService
 
     public GeminiService(HttpClient httpClient, IConfiguration config)
     {
-        _httpClient = httpClient;
-        _apiKey = config["Gemini:ApiKey"] ?? throw new ArgumentNullException("API Key não configurada");
+        _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+        
+        // Correção do Aviso S3928: Usando InvalidOperationException para chaves de configuração ausentes
+        _apiKey = config["Gemini:ApiKey"] ?? throw new InvalidOperationException("A API Key do Gemini não foi configurada no arquivo appsettings.json.");
     }
 
     public async Task<ResultadoIA> GerarResumoCuriosidadeAsync(string conteudo)
     {
+        if (string.IsNullOrWhiteSpace(conteudo))
+        {
+            return new ResultadoIA("Conteúdo vazio fornecido para análise.", "vazio", "Nenhum");
+        }
+
         var apiKeyLimpa = _apiKey.Trim(); 
         
         var url = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={apiKeyLimpa}";
@@ -37,7 +45,9 @@ public class GeminiService : IIAService
         if (!response.IsSuccessStatusCode)
         {
             var erroDoGoogle = await response.Content.ReadAsStringAsync();
-            throw new Exception($"Google API recusou a requisição. Código: {response.StatusCode}. Detalhe: {erroDoGoogle}");
+            
+            // Correção do Aviso S112: Lançando HttpRequestException em vez de uma Exception genérica
+            throw new HttpRequestException($"Google API recusou a requisição. Código: {response.StatusCode}. Detalhe: {erroDoGoogle}", null, response.StatusCode);
         }
 
         var responseString = await response.Content.ReadAsStringAsync();
@@ -53,6 +63,6 @@ public class GeminiService : IIAService
         var cleanJson = textResult?.Replace("```json", "").Replace("```", "").Trim();
 
         return JsonSerializer.Deserialize<ResultadoIA>(cleanJson ?? "{}", new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) 
-               ?? new ResultadoIA("Erro ao gerar", "erro", "Erro");
+               ?? new ResultadoIA("Erro ao gerar resumo", "erro", "Erro");
     }
 }

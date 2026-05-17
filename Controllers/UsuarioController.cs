@@ -39,5 +39,30 @@ namespace BlogPessoal.Controllers
 
             return Ok(resposta);
         }
+
+        [Authorize]
+        [HttpPut("atualizar")]
+        public async Task<ActionResult<Usuario>> Atualizar([FromBody] Usuario usuario)
+        {
+            var resposta = await _usuarioService.AtualizarUsuario(usuario);
+
+            if (resposta == null)
+                return NotFound("Utilizador não encontrado.");
+
+            return Ok(resposta);
+        }
+
+        [Authorize]
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Deletar(long id)
+        {
+            var apagado = await _usuarioService.DeletarUsuario(id);
+
+            if (!apagado)
+                {return NotFound("Utilizador não encontrado.");
+                }
+
+            return NoContent();
+        }
     }
 }

@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace BlogPessoal.Models
 {
@@ -7,6 +8,7 @@ namespace BlogPessoal.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [JsonRequired]
         public long Id { get; set; }
 
         [Required]

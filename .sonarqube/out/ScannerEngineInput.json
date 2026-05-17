@@ -1,0 +1,96 @@
+{
+  "scannerProperties": [
+    {
+      "key": "sonar.scanner.app",
+      "value": "ScannerMSBuild"
+    },
+    {
+      "key": "sonar.scanner.appVersion",
+      "value": "11.2.1"
+    },
+    {
+      "key": "sonar.scanner.bootstrapStartTime",
+      "value": "1779051082000"
+    },
+    {
+      "key": "sonar.projectKey",
+      "value": "exMontreal"
+    },
+    {
+      "key": "sonar.working.directory",
+      "value": "C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\.sonarqube\\out\\.sonar"
+    },
+    {
+      "key": "sonar.projectBaseDir",
+      "value": "C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal"
+    },
+    {
+      "key": "sonar.pullrequest.cache.basepath",
+      "value": "C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal"
+    },
+    {
+      "key": "sonar.sources",
+      "value": ""
+    },
+    {
+      "key": "sonar.tests",
+      "value": ""
+    },
+    {
+      "key": "sonar.modules",
+      "value": "20B98393-43A4-E386-15FF-47545BD6C5B5"
+    },
+    {
+      "key": "20B98393-43A4-E386-15FF-47545BD6C5B5.sonar.projectKey",
+      "value": "exMontreal:20B98393-43A4-E386-15FF-47545BD6C5B5"
+    },
+    {
+      "key": "20B98393-43A4-E386-15FF-47545BD6C5B5.sonar.projectName",
+      "value": "BlogPessoal"
+    },
+    {
+      "key": "20B98393-43A4-E386-15FF-47545BD6C5B5.sonar.projectBaseDir",
+      "value": "C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal"
+    },
+    {
+      "key": "20B98393-43A4-E386-15FF-47545BD6C5B5.sonar.working.directory",
+      "value": "C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\.sonarqube\\out\\.sonar\\mod0"
+    },
+    {
+      "key": "20B98393-43A4-E386-15FF-47545BD6C5B5.sonar.sourceEncoding",
+      "value": "utf-8"
+    },
+    {
+      "key": "20B98393-43A4-E386-15FF-47545BD6C5B5.sonar.tests",
+      "value": ""
+    },
+    {
+      "key": "20B98393-43A4-E386-15FF-47545BD6C5B5.sonar.sources",
+      "value": "C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Controllers\\IAController.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Controllers\\PostagemController.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Controllers\\TemaController.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Controllers\\UsuarioController.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Data\\AppDbContext.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\DTOs\\PostagemRequest.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\DTOs\\ResultadoIA.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\DTOs\\TemaRequest.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\DTOs\\TemaResponse.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Migrations\\20260515211421_InitialCreate.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Migrations\\20260515211421_InitialCreate.Designer.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Migrations\\20260515211607_CriacaoInicialCompleta.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Migrations\\20260515211607_CriacaoInicialCompleta.Designer.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Migrations\\20260517191920_AdicionandoUsuarioNaPostagem.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Migrations\\20260517191920_AdicionandoUsuarioNaPostagem.Designer.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Migrations\\AppDbContextModelSnapshot.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Models\\Postagem.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Models\\Tema.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Models\\Usuario.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Models\\UsuarioLogin.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Program.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Services\\IA\\GeminiService.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Services\\IA\\IIAService.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Services\\IUsuarioService.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Services\\UsuarioService.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\obj\\Debug\\net10.0\\BlogPessoal.GlobalUsings.g.cs,\"C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\obj\\Debug\\net10.0\\.NETCoreApp,Version=v10.0.AssemblyAttributes.cs\",C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\obj\\Debug\\net10.0\\BlogPessoal.AssemblyInfo.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\obj\\Debug\\net10.0\\BlogPessoal.MvcApplicationPartsAssemblyInfo.cs,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\appsettings.Development.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\appsettings.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\.gitignore,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\BlogPessoal.csproj.lscache,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\BlogPessoal.http,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\Properties\\launchSettings.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\obj\\BlogPessoal.csproj.nuget.dgspec.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\obj\\project.assets.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\bin\\Debug\\net10.0\\appsettings.Development.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\bin\\Debug\\net10.0\\appsettings.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\bin\\Debug\\net10.0\\BlogPessoal.deps.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\bin\\Debug\\net10.0\\BlogPessoal.runtimeconfig.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\bin\\Debug\\net10.0\\BlogPessoal.staticwebassets.endpoints.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\bin\\Debug\\net9.0\\appsettings.Development.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\bin\\Debug\\net9.0\\appsettings.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\bin\\Debug\\net9.0\\BlogPessoal.deps.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\bin\\Debug\\net9.0\\BlogPessoal.runtimeconfig.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\bin\\Debug\\net9.0\\BlogPessoal.staticwebassets.endpoints.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\obj\\Debug\\net10.0\\BlogPessoal.sourcelink.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\obj\\Debug\\net10.0\\rjsmcshtml.dswa.cache.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\obj\\Debug\\net10.0\\rjsmrazor.dswa.cache.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\obj\\Debug\\net10.0\\rpswa.dswa.cache.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\obj\\Debug\\net10.0\\staticwebassets.build.endpoints.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\obj\\Debug\\net10.0\\staticwebassets.build.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\obj\\Debug\\net9.0\\rjsmcshtml.dswa.cache.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\obj\\Debug\\net9.0\\rjsmrazor.dswa.cache.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\obj\\Debug\\net9.0\\rpswa.dswa.cache.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\obj\\Debug\\net9.0\\staticwebassets.build.endpoints.json,C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\obj\\Debug\\net9.0\\staticwebassets.build.json"
+    },
+    {
+      "key": "20B98393-43A4-E386-15FF-47545BD6C5B5.sonar.cs.analyzer.projectOutPaths",
+      "value": "C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\.sonarqube\\out\\0"
+    },
+    {
+      "key": "20B98393-43A4-E386-15FF-47545BD6C5B5.sonar.cs.roslyn.reportFilePaths",
+      "value": "C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\.sonarqube\\out\\0\\Issues.json"
+    },
+    {
+      "key": "20B98393-43A4-E386-15FF-47545BD6C5B5.sonar.cs.scanner.telemetry",
+      "value": "C:\\Users\\Cleyton BMX\\Desktop\\exercicio 2 - montreal\\BlogPessoal\\.sonarqube\\out\\0\\Telemetry.json"
+    },
+    {
+      "key": "sonar.token",
+      "value": "***"
+    },
+    {
+      "key": "sonar.host.url",
+      "value": "http://localhost:9000"
+    },
+    {
+      "key": "sonar.visualstudio.enable",
+      "value": "false"
+    }
+  ]
+}

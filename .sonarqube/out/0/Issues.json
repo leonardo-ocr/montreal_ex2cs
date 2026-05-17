@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Compilador do Microsoft (R) Visual C#",
+        "version": "5.3.0.0",
+        "fileVersion": "5.3.0-2.26219.105 (c23858a6d860abe3ca94f9ac630c3e61b2625664)",
+        "semanticVersion": "5.3.0",
+        "language": "pt-BR"
+      },
+      "results": [
+        {
+          "ruleId": "S2068",
+          "level": "warning",
+          "message": "\"pwd\" detected here, make sure this is not a hard-coded credential.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Cleyton%20BMX/Desktop/exercicio%202%20-%20montreal/BlogPessoal/appsettings.json",
+                "region": {
+                  "startLine": 3,
+                  "startColumn": 27,
+                  "endLine": 3,
+                  "endColumn": 101
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S6418",
+          "level": "warning",
+          "message": "\"ApiKey\" detected here, make sure this is not a hard-coded secret.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Cleyton%20BMX/Desktop/exercicio%202%20-%20montreal/BlogPessoal/appsettings.json",
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 16,
+                  "endLine": 13,
+                  "endColumn": 55
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "CA1869",
+          "level": "note",
+          "message": "Evite criar uma nova instância 'JsonSerializerOptions' para cada operação de serialização. Em vez disso, armazene em cache e reutilize instâncias.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/Cleyton%20BMX/Desktop/exercicio%202%20-%20montreal/BlogPessoal/Services/IA/GeminiService.cs",
+                "region": {
+                  "startLine": 65,
+                  "startColumn": 75,
+                  "endLine": 65,
+                  "endColumn": 139
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "CA1869": {
+          "id": "CA1869",
+          "shortDescription": "Armazenar em cache e reutilizar instâncias 'JsonSerializerOptions'",
+          "fullDescription": "Evite criar uma nova instância 'JsonSerializerOptions' para cada operação de serialização. Em vez disso, armazene em cache e reutilize instâncias. Instâncias 'JsonSerializerOptions' de uso único podem degradar substancialmente o desempenho de seu aplicativo.",
+          "defaultLevel": "note",
+          "helpUri": "https://learn.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1869",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "S2068": {
+          "id": "S2068",
+          "shortDescription": "Credentials should not be hard-coded",
+          "fullDescription": "Hard-coding credentials in source code or binaries makes it easy for attackers to extract sensitive information, especially in distributed or open-source applications. This practice exposes your application to significant security risks.",
+          "defaultLevel": "warning",
+          "properties": {
+            "category": "Major Vulnerability",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        },
+        "S6418": {
+          "id": "S6418",
+          "shortDescription": "Secrets should not be hard-coded",
+          "fullDescription": "Hard-coding secrets in source code or binaries makes it easy for attackers to extract sensitive information, especially in distributed or open-source applications. This practice exposes credentials and tokens, increasing the risk of unauthorized access and data breaches.",
+          "defaultLevel": "warning",
+          "properties": {
+            "category": "Blocker Vulnerability",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "MainSourceScope",
+              "SonarWay"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
