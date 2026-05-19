@@ -9,6 +9,7 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// configuração do contexto do banco.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
@@ -20,6 +21,7 @@ builder.Services.AddControllers()
     });
 builder.Services.AddEndpointsApiExplorer();
 
+// configura o swagger para aceitar e embutir o Token JWT nos cabeçalhos das requisições de teste
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -59,13 +61,14 @@ if (string.IsNullOrEmpty(secretKey))
 
 var chave = Encoding.ASCII.GetBytes(secretKey);
 
+// configuração estrita do pipeline de validação do token JWT
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options =>
 {
-    options.RequireHttpsMetadata = false; 
+    options.RequireHttpsMetadata = false;
     options.SaveToken = true;
     options.TokenValidationParameters = new TokenValidationParameters
     {
@@ -85,6 +88,7 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = "swagger"; 
 });
 
+// primeiro identifica o usuário, depois verifica se ele tem permissão
 app.UseAuthentication(); 
 app.UseAuthorization();
 

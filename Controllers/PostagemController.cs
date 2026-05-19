@@ -8,6 +8,7 @@ using BlogPessoal.DTOs;
 
 namespace BlogPessoal.Controllers;
 
+// protege todos os endpoints deste controller, exigindo Token JWT
 [Authorize]
 [Route("api/postagens")]
 [ApiController]
@@ -16,6 +17,7 @@ public class PostagemController : ControllerBase
     private readonly AppDbContext _context;
     private readonly IIAService _iaService;
 
+    // injeção de dependência do contexto do banco e do serviço de IA
     public PostagemController(AppDbContext context, IIAService iaService)
     {
         _context = context;
@@ -69,6 +71,7 @@ public class PostagemController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Postagem>> Create([FromBody] Postagem postagem)
     {
+        // intercepta a requisição e valida as diretrizes da comunidade antes de qualquer processamento
         var moderacao = await _iaService.VerificarConteudoOfensivoAsync(postagem.Texto);
         if (moderacao.EhOfensivo)
         {
@@ -78,6 +81,7 @@ public class PostagemController : ControllerBase
                 motivo = moderacao.Motivo 
             });
         }
+        
         var resumoCuriosidade = await _iaService.GerarResumoCuriosidadeAsync(postagem.Texto);
         
         postagem.ResumoIA = resumoCuriosidade.Resumo;
@@ -93,6 +97,7 @@ public class PostagemController : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult<Postagem>> Update(long id, [FromBody] Postagem postagem)
     {
+        // previne a vulnerabilidade de alteração de ID via corpo da requisição
         if (id != postagem.Id)
         {
             return BadRequest("O ID da URL não corresponde ao ID do corpo da requisição.");
@@ -126,6 +131,7 @@ public class PostagemController : ControllerBase
         _context.Postagens.Remove(postagem);
         await _context.SaveChangesAsync();
 
+        // retorna 204
         return NoContent();
     }
 }
