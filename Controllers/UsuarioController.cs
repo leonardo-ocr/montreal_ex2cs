@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BlogPessoal.Controllers
 {
     [Route("api/usuarios")]
-    [ApiController] // <-- Esta anotação é obrigatória para o Swagger mapear as rotas
+    [ApiController]
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioService _usuarioService;
@@ -41,9 +41,14 @@ namespace BlogPessoal.Controllers
         }
 
         [Authorize]
-        [HttpPut("atualizar")]
-        public async Task<ActionResult<Usuario>> Atualizar([FromBody] Usuario usuario)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Usuario>> Atualizar(long id, [FromBody] Usuario usuario)
         {
+            if (id != usuario.Id)
+            {
+                return BadRequest("O ID da URL não corresponde ao ID do corpo da requisição.");
+            }
+
             var resposta = await _usuarioService.AtualizarUsuario(usuario);
 
             if (resposta == null)
@@ -59,8 +64,9 @@ namespace BlogPessoal.Controllers
             var apagado = await _usuarioService.DeletarUsuario(id);
 
             if (!apagado)
-                {return NotFound("Utilizador não encontrado.");
-                }
+            {
+                return NotFound("Utilizador não encontrado.");
+            }
 
             return NoContent();
         }

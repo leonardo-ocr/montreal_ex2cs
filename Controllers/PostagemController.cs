@@ -22,7 +22,6 @@ public class PostagemController : ControllerBase
         _iaService = iaService;
     }
 
-    // 1. GET /api/postagens -> Listar todas as postagens.
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Postagem>>> GetAll()
     {
@@ -32,7 +31,6 @@ public class PostagemController : ControllerBase
             .ToListAsync();
     }
 
-    // 2. GET /api/postagens/filtro?autor={id}&tema={id} -> Filtrar postagens por autor e/ou tema.
     [HttpGet("filtro")]
     public async Task<ActionResult<IEnumerable<Postagem>>> GetByFiltro([FromQuery] long? autor, [FromQuery] long? tema)
     {
@@ -41,13 +39,11 @@ public class PostagemController : ControllerBase
             .Include(p => p.Usuario)
             .AsQueryable();
 
-        // Filtro por ID do Autor (Usuário)
         if (autor.HasValue)
         {
             query = query.Where(p => p.UsuarioId == autor.Value);
         }
 
-        // Filtro por ID do Tema
         if (tema.HasValue)
         {
             query = query.Where(p => p.TemaId == tema.Value);
@@ -56,7 +52,6 @@ public class PostagemController : ControllerBase
         return await query.ToListAsync();
     }
 
-    // GET /api/postagens/{id} -> Buscar por ID (Auxiliar necessário para o CreatedAtAction)
     [HttpGet("{id}")]
     public async Task<ActionResult<Postagem>> GetById(long id)
     {
@@ -66,53 +61,38 @@ public class PostagemController : ControllerBase
             .FirstOrDefaultAsync(p => p.Id == id);
 
         if (postagem == null)
-        {
             return NotFound("Postagem não encontrada.");
-        }
 
         return Ok(postagem);
     }
 
-    // 3. POST /api/postagens -> Criar uma nova postagem.
     [HttpPost]
-    public async Task<ActionResult<Postagem>> Create([FromBody] PostagemRequest request)
+    public async Task<ActionResult<Postagem>> Create([FromBody] Postagem postagem)
     {
-        var temaExiste = await _context.Temas.FindAsync(request.TemaId);
-        if (temaExiste == null)
+        // 1. Executa a moderação simples de conteúdo ofensivo antes de qualquer ação
+        var moderacao = await _iaService.VerificarConteudoOfensivoAsync(postagem.Texto);
+        if (moderacao.EhOfensivo)
         {
-            return NotFound("O Tema informado não existe.");
+            return BadRequest(new 
+            { 
+                erro = "A postagem contém termos inadequados ou ofensivos que violam as diretrizes do blog.", 
+                motivo = moderacao.Motivo 
+            });
         }
 
-        // Recupera o email do usuário logado diretamente do Token JWT
-        var usuarioEmail = User.Identity?.Name;
-        var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.UsuarioLogin == usuarioEmail);
+        // 2. Se o texto for limpo, prossegue com o fluxo comum do sistema
+        var resumoCuriosidade = await _iaService.GerarResumoCuriosidadeAsync(postagem.Texto);
+        
+        postagem.ResumoIA = resumoCuriosidade.Resumo;
+        postagem.TagsIA = resumoCuriosidade.Tags;
+        postagem.CategoriaIA = resumoCuriosidade.Categoria;
 
-        if (usuario == null)
-        {
-            return Unauthorized("Usuário inválido.");
-        }
-
-        // Chama a IA para gerar os metadados de Física
-        var analiseIA = await _iaService.GerarResumoCuriosidadeAsync(request.Texto);
-
-        var novaPostagem = new Postagem
-        {
-            Titulo = request.Titulo,
-            Texto = request.Texto,
-            TemaId = request.TemaId,
-            UsuarioId = usuario.Id,
-            ResumoIA = analiseIA.Resumo,
-            TagsIA = analiseIA.Tags,
-            CategoriaIA = analiseIA.Categoria
-        };
-
-        _context.Postagens.Add(novaPostagem);
+        _context.Postagens.Add(postagem);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetById), new { id = novaPostagem.Id }, novaPostagem);
+        return CreatedAtAction(nameof(GetById), new { id = postagem.Id }, postagem);
     }
 
-    // 4. PUT /api/postagens/{id} -> Atualizar uma postagem existente.
     [HttpPut("{id}")]
     public async Task<ActionResult<Postagem>> Update(long id, [FromBody] Postagem postagem)
     {
@@ -127,7 +107,6 @@ public class PostagemController : ControllerBase
             return NotFound("Postagem não encontrada.");
         }
 
-        // Garante que os dados gerados pela IA não se percam na atualização
         postagem.ResumoIA ??= postagemExiste.ResumoIA;
         postagem.TagsIA ??= postagemExiste.TagsIA;
         postagem.CategoriaIA ??= postagemExiste.CategoriaIA;
@@ -138,7 +117,6 @@ public class PostagemController : ControllerBase
         return Ok(postagem);
     }
 
-    // 5. DELETE /api/postagens/{id} -> Excluir uma postagem.
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(long id)
     {

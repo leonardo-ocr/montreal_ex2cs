@@ -7,7 +7,7 @@ using BlogPessoal.DTOs;
 
 namespace BlogPessoal.Controllers;
 
-[Authorize] // <-- O bloqueio de segurança que exige o Token JWT
+[Authorize]
 [Route("api/temas")]
 [ApiController]
 public class TemaController : ControllerBase
@@ -34,10 +34,15 @@ public class TemaController : ControllerBase
         return CreatedAtAction(nameof(GetAll), new { id = tema.Id }, new TemaResponse(tema.Id, tema.Descricao));
     }
 
-    [HttpPut]
-    public async Task<ActionResult<TemaResponse>> Update([FromBody] Tema request)
+    [HttpPut("{id}")]
+    public async Task<ActionResult<TemaResponse>> Update(long id, [FromBody] Tema request)
     {
-        var tema = await _context.Temas.FindAsync(request.Id);
+        if (id != request.Id)
+        {
+            return BadRequest("O ID da URL não corresponde ao ID do corpo da requisição.");
+        }
+
+        var tema = await _context.Temas.FindAsync(id);
         if (tema == null)
             return NotFound("Tema não encontrado.");
 
@@ -58,6 +63,6 @@ public class TemaController : ControllerBase
         _context.Temas.Remove(tema);
         await _context.SaveChangesAsync();
 
-        return NoContent(); // Retorna 204 sem conteúdo (padrão para delete com sucesso)
+        return NoContent();
     }
 }
