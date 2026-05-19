@@ -69,7 +69,6 @@ public class PostagemController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Postagem>> Create([FromBody] Postagem postagem)
     {
-        // 1. Executa a moderação simples de conteúdo ofensivo antes de qualquer ação
         var moderacao = await _iaService.VerificarConteudoOfensivoAsync(postagem.Texto);
         if (moderacao.EhOfensivo)
         {
@@ -79,8 +78,6 @@ public class PostagemController : ControllerBase
                 motivo = moderacao.Motivo 
             });
         }
-
-        // 2. Se o texto for limpo, prossegue com o fluxo comum do sistema
         var resumoCuriosidade = await _iaService.GerarResumoCuriosidadeAsync(postagem.Texto);
         
         postagem.ResumoIA = resumoCuriosidade.Resumo;

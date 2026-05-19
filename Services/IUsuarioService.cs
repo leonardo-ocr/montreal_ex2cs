@@ -6,7 +6,7 @@ namespace BlogPessoal.Services
     {
         Task<Usuario?> CadastrarUsuario(Usuario usuario);
         Task<UsuarioLogin?> AutenticarUsuario(UsuarioLogin usuarioLogin);
-        Task<Usuario?> AtualizarUsuario(Usuario usuario); // <-- Adicionar esta linha
-        Task<bool> DeletarUsuario(long id);               // <-- Adicionar esta linha
+        Task<Usuario?> AtualizarUsuario(Usuario usuario);
+        Task<bool> DeletarUsuario(long id);
     }
 }

@@ -70,12 +70,19 @@ As chaves privadas não estão no controle de versão. Antes de rodar, crie o ar
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Database=blog_pessoal;Uid=seu_usuario;Pwd=sua_senha;"
+    "DefaultConnection": "server=localhost;port=xxxx;database=db_blog_pessoal;uid=SeuLogin;pwd=SuaSenha"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "Gemini": {
+    "ApiKey": "Sua_API_Key_gemini2.5flash"
   },
   "JwtSettings": {
-    "SecretKey": "SUA_CHAVE_JWT"
-  },
-  "Gemini": {
-    "ApiKey": "SUA_API_KEY_DO_GEMINI"
+    "SecretKey": "SUa_senha_JWT"
   }
 }

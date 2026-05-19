@@ -5,16 +5,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.OpenApi.Models; // <-- Importação necessária para o Swagger Security
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuração da base de dados
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-// Registar os controladores e o NewtonsoftJson
 builder.Services.AddControllers()
     .AddNewtonsoftJson(options =>
     {
@@ -22,9 +20,6 @@ builder.Services.AddControllers()
     });
 builder.Services.AddEndpointsApiExplorer();
 
-// =======================================================
-// CONFIGURAÇÃO DO SWAGGER COM AUTENTICAÇÃO
-// =======================================================
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -53,13 +48,9 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-// Registar os serviços de IA e de Utilizador
 builder.Services.AddHttpClient<IIAService, GeminiService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
-// =======================================================
-// CONFIGURAÇÃO DE SEGURANÇA (JWT)
-// =======================================================
 var secretKey = builder.Configuration["JwtSettings:SecretKey"];
 if (string.IsNullOrEmpty(secretKey))
 {
@@ -84,11 +75,9 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = false
     };
 });
-// =======================================================
 
 var app = builder.Build();
 
-// Ativar o Swagger
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
@@ -96,7 +85,6 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = "swagger"; 
 });
 
-// Middlewares de segurança (A ordem aqui é obrigatória)
 app.UseAuthentication(); 
 app.UseAuthorization();
 

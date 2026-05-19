@@ -22,7 +22,6 @@ public class IAController : ControllerBase
         if (string.IsNullOrEmpty(texto))
             return BadRequest("O texto para resumo não pode estar vazio.");
 
-        // Consome o serviço do Gemini configurado anteriormente
         var resultado = await _iaService.GerarResumoCuriosidadeAsync(texto);
         
         return Ok(resultado);

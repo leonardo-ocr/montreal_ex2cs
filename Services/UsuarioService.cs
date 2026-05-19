@@ -21,7 +21,6 @@ namespace BlogPessoal.Services
 
         public async Task<Usuario?> CadastrarUsuario(Usuario usuario)
         {
-            // Corrigido para u.UsuarioLogin e usuario.UsuarioLogin
             if (await _context.Usuarios.AnyAsync(u => u.UsuarioLogin == usuario.UsuarioLogin))
                 return null;
 
@@ -35,7 +34,6 @@ namespace BlogPessoal.Services
 
         public async Task<UsuarioLogin?> AutenticarUsuario(UsuarioLogin usuarioLogin)
         {
-            // Corrigido para comparar o UsuarioLogin do Model com o Usuario do DTO
             var buscaUsuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.UsuarioLogin == usuarioLogin.Usuario);
 
             if (buscaUsuario == null)
@@ -58,14 +56,12 @@ public async Task<Usuario?> AtualizarUsuario(Usuario usuario)
             if (usuarioExiste == null)
                 return null;
 
-            // Se o utilizador alterou a palavra-passe, gera um novo hash seguro
             if (!string.IsNullOrEmpty(usuario.Senha) && usuario.Senha != usuarioExiste.Senha)
             {
                 usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha, workFactor: 10);
             }
             else
             {
-                // Se não enviou uma nova senha, mantém a que já estava no banco
                 usuario.Senha = usuarioExiste.Senha;
             }
 
@@ -95,7 +91,6 @@ public async Task<Usuario?> AtualizarUsuario(Usuario usuario)
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    // Corrigido para usuario.UsuarioLogin
                     new Claim(ClaimTypes.Name, usuario.UsuarioLogin) 
                 }),
                 Expires = DateTime.UtcNow.AddHours(2),
